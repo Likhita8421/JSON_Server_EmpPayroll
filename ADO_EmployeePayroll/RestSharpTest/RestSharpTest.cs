@@ -40,7 +40,7 @@ namespace RestSharpTestCase
             client = new RestClient("http://localhost:4000");
             //Arrange
             RestRequest request = new RestRequest("/Employee", Method.Post);
-            var body = new Employee { name = "JAGADEESH", salary = "60000" };
+            var body = new Employee { name = "Minal", salary = "60000" };
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             //Act
             RestResponse response = client.Execute(request);
@@ -57,9 +57,9 @@ namespace RestSharpTestCase
             client = new RestClient("http://localhost:4000");
             //Arrange
             List<Employee> list = new List<Employee>();
-            list.Add(new Employee { name = "AMMA", salary = "25000" });
-            list.Add(new Employee { name = "NANNA", salary = "60000" });
-            list.Add(new Employee { name = "CHITTI", salary = "40000" });
+            list.Add(new Employee { name = "Aman", salary = "25000" });
+            list.Add(new Employee { name = "Niraj", salary = "60000" });
+            list.Add(new Employee { name = "Chirag", salary = "40000" });
             list.ForEach(body =>
             {
                 RestRequest request = new RestRequest("/Employee", Method.Post);
@@ -81,14 +81,14 @@ namespace RestSharpTestCase
             //Arrange
             RestRequest request = new RestRequest("/Employee/4", Method.Put);
             List<Employee> list = new List<Employee>();
-            Employee body = new Employee { name = "lakshmi", salary = "70000" };
+            Employee body = new Employee { name = "leena", salary = "70000" };
             request.AddParameter("application/json", body, ParameterType.RequestBody);
             //Act
             RestResponse response = client.Execute(request);
             //Assert
             Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             Employee exp = JsonConvert.DeserializeObject<Employee>(response.Content);
-            Assert.AreEqual("lakshmi", exp.name);
+            Assert.AreEqual("leena", exp.name);
             Assert.AreEqual("70000", exp.salary);
             Console.WriteLine(response.Content);
         }
